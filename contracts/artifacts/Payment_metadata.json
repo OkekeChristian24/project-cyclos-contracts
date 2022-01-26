@@ -1,0 +1,452 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_wallet",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "tokenAddress",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "tokenIndex",
+						"type": "uint256"
+					}
+				],
+				"name": "NewTokenAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "walletAddress",
+						"type": "address"
+					}
+				],
+				"name": "NewWalletSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "string",
+						"name": "orderID",
+						"type": "string"
+					},
+					{
+						"indexed": true,
+						"internalType": "string",
+						"name": "paymentID",
+						"type": "string"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					}
+				],
+				"name": "TransactionMade",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newTokenAddress",
+						"type": "address"
+					}
+				],
+				"name": "addPaymentToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "tokenAddress",
+						"type": "address"
+					}
+				],
+				"name": "getTokenIndex",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "orderId",
+						"type": "string"
+					}
+				],
+				"name": "getTransactionDetails",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "orderID",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "paymentID",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "tokenAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenIndex",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "totalPrice",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "totalQty",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "numOfProducts",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "buyer",
+								"type": "address"
+							}
+						],
+						"internalType": "struct Payment.OrderDetail",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "orderId",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenIndex",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalQty",
+						"type": "uint256"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "asin",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "price",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "quantity",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Payment.Product[]",
+						"name": "products",
+						"type": "tuple[]"
+					}
+				],
+				"name": "makePayment",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "paymentTokensIndex",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "newWallet",
+						"type": "address"
+					}
+				],
+				"name": "setWallet",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "supportedTokens",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "wallet",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Payment.sol": "Payment"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Payment.sol": {
+			"keccak256": "0x68e6c37ab94ca83bcd076357b221608750346ae9e90ddb9af6fb88141701b950",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://980ac86029920a09e0848478666650aaf610698f6b0b3e6deff864819f1f7363",
+				"dweb:/ipfs/QmQe5z4kXWoWXhpz6dvn4ed1TkKjsKQztTkQaarV3zDibg"
+			]
+		},
+		"contracts/helpers/Address.sol": {
+			"keccak256": "0x5c6e1c04775887a9d2a673ca48d4bc607465f7ba0b8320599a0ae8962536335d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e3f2b365fbd2b120c74f31403bedf9b87faacde47608a9ea4e4dfab6ad61d83e",
+				"dweb:/ipfs/QmZSTehFfpTj5uXngoDsKwGdqRs1BFTqMANdyuFNB7pPKt"
+			]
+		},
+		"contracts/helpers/Context.sol": {
+			"keccak256": "0x2c36c9489879b7c91cdd73bbe8b2584f401aa26f4f252c04f053e824d6ca75c6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3ef20575fc12fd27f252acd28a8d0f65893832f29fd9c82f7ec165121af4572f",
+				"dweb:/ipfs/QmZMCoWWDTjhs1CNFMWv4JNWVyyeuzyqteCHhF4heCUYJJ"
+			]
+		},
+		"contracts/helpers/IERC20.sol": {
+			"keccak256": "0x9965b17c915fc1dad31e31e468b342822982fe77c70acc41d1d1a55beb2f4913",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9781fea5dca1d46db45b1261605a8179c7c82d5df5bc6ee65f2d2193b7550cdb",
+				"dweb:/ipfs/QmRKouisrvVABub2LUGpfXEfvodMeW121qEESYMkcdi1Hi"
+			]
+		},
+		"contracts/helpers/Ownable.sol": {
+			"keccak256": "0x5eeb86897007c578f301464fceac720c7330486c54ae85c0c09068b46197cfb9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://edefd9ff4f087a3016763a687eaae449c0e8f6dcda9d86032a49de900f129050",
+				"dweb:/ipfs/Qmc4adiPdGKgEJLxqgd8JuKkwrNBNtB78kkGinnnuUnyJN"
+			]
+		},
+		"contracts/helpers/ReentrancyGuard.sol": {
+			"keccak256": "0x5531a4a8604939470e38d88dbb16a35c38cf17a3d66393fe9c73b5da561615df",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d0fd4ce017408e0e7cda8bb02298443533e2fbb261878df176374bee5c3e4adf",
+				"dweb:/ipfs/QmPhT3sFavHxyWopC7f1Ukzw1TDmmkzr5te24Btuvunpz1"
+			]
+		},
+		"contracts/helpers/SafeERC20.sol": {
+			"keccak256": "0xe7ea939e4d2b9be8696581da4bcf557355c3fea84b5edead12b1fee47c4db27b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ab1b97703352f65844ee143648270abb4f37171b22cf2725af4d12464772ce5c",
+				"dweb:/ipfs/QmT2n5kDg4Zfuvawq4C4huibrD9eRPzx7DmnnbccNGaJcG"
+			]
+		},
+		"contracts/helpers/SafeMath.sol": {
+			"keccak256": "0x8ca6870bea5eb6f7dae440f927ba9ec9a98da21bab9c3ce984021a959efa3852",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://778b218b0e19414b80d9f5b93d78249ad9e6b06846ef40a1bec3e3528f6659c3",
+				"dweb:/ipfs/QmNutPC5kg4W8HnzXVpJ2KS5ykqQCi75MAtr4XJpE7ugE8"
+			]
+		},
+		"contracts/helpers/Strings.sol": {
+			"keccak256": "0x0829b081483a3608ba02133a8a0a962923d615eeee81f241b6060729b116ff34",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://724cf3f3fe534f1b1125481575f4a67995ca7b5208f09d816bad1f8f88ea3982",
+				"dweb:/ipfs/QmRpW8ePw8kXiLAL8NoKpxqxmFmMNLM748LADun5zDAen7"
+			]
+		}
+	},
+	"version": 1
+}

@@ -83,7 +83,13 @@ contract Payment is Context, Ownable, ReentrancyGuard{
         
         for(uint i = 0; i < products.length; i++){
             // orderProducts[orderId][i] = products[i];
-            orderProducts[orderId].push(products[i]);
+            // OR
+            // orderProducts[orderId].push(products[i]);
+            // OR
+            orderProducts[orderId][i].asin = products[i].asin;
+            orderProducts[orderId][i].price = products[i].price;
+            orderProducts[orderId][i].quantity = products[i].quantity;
+
         }
 
         emit TransactionMade(orderId, detail.paymentID, _msgSender());

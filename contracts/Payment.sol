@@ -22,11 +22,6 @@ contract Payment is Context, Ownable, ReentrancyGuard{
 
     address payable public wallet;
 
-    struct Product{
-        string asin;
-        uint256 price;
-        uint256 quantity;
-    }
 
     struct OrderDetail{
         string orderID;
@@ -35,11 +30,9 @@ contract Payment is Context, Ownable, ReentrancyGuard{
         uint tokenIndex;
         uint256 totalPrice;
         uint256 totalQty;
-        uint256 numOfProducts;
         address buyer;
     }
 
-    mapping(string => Product[]) orderProducts;
     mapping(address => mapping(string => OrderDetail)) transactions;
     mapping(address => uint256) tokenAmounts;
     event TransactionMade(string indexed orderID, string indexed paymentID, address indexed buyer);
@@ -56,19 +49,17 @@ contract Payment is Context, Ownable, ReentrancyGuard{
         string memory orderId,
         uint256 tokenIndex,
         uint256 totalPrice,
-        uint256 totalQty,
-        Product[] memory products
+        uint256 totalQty
         ) public 
         {
         require(supportedTokens[tokenIndex] != address(0), "makePayment: Invalid token index");
-        IERC20 paymentToken = IERC20(supportedTokens[tokenIndex]); // Uncomment this
+        IERC20 paymentToken = IERC20(supportedTokens[tokenIndex]);
         
         // Check allowance and transfer token
-        uint256 allowance = paymentToken.allowance(_msgSender(), address(this)); // Uncomment this
-        require(allowance >= totalPrice, "makePayment: Contract not approved to make payment"); // Uncomment this
+        uint256 allowance = paymentToken.allowance(_msgSender(), address(this));
+        require(allowance >= totalPrice, "makePayment: Contract not approved to make payment"); 
         
-        paymentToken.safeTransferFrom(_msgSender(), wallet, totalPrice); // Uncomment this
-        
+        paymentToken.safeTransferFrom(_msgSender(), wallet, totalPrice);
 
         // Record the transaction details
         OrderDetail storage detail = transactions[_msgSender()][orderId];
@@ -78,20 +69,8 @@ contract Payment is Context, Ownable, ReentrancyGuard{
         detail.tokenIndex = tokenIndex;
         detail.totalPrice = totalPrice;
         detail.totalQty = totalQty;
-        detail.numOfProducts = products.length;
         detail.buyer = _msgSender();
         
-        for(uint i = 0; i < products.length; i++){
-            // orderProducts[orderId][i] = products[i];
-            // OR
-            // orderProducts[orderId].push(products[i]);
-            // OR
-            orderProducts[orderId][i].asin = products[i].asin;
-            orderProducts[orderId][i].price = products[i].price;
-            orderProducts[orderId][i].quantity = products[i].quantity;
-
-        }
-
         emit TransactionMade(orderId, detail.paymentID, _msgSender());
 
     }
@@ -102,7 +81,9 @@ contract Payment is Context, Ownable, ReentrancyGuard{
         wallet = newWallet;
         emit NewWalletSet(newWallet);
     }
+
     function addPaymentToken(address newTokenAddress) public onlyOwner{
+        require(paymentTokensIndex[newTokenAddress] == 0, "addPaymentToken: Token already added");
         supportedTokens[tokenCount] = newTokenAddress;
         paymentTokensIndex[newTokenAddress] = tokenCount;
         tokenCount = tokenCount.add(1);
@@ -112,7 +93,6 @@ contract Payment is Context, Ownable, ReentrancyGuard{
 
     
     // Getter functions
-    
     function getTokenIndex(address tokenAddress) public view returns(uint256){
         require(paymentTokensIndex[tokenAddress] != 0, "getTokenIndex: Not a supported payment token");
         return paymentTokensIndex[tokenAddress];

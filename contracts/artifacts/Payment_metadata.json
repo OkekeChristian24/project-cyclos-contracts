@@ -172,11 +172,6 @@
 								"type": "uint256"
 							},
 							{
-								"internalType": "uint256",
-								"name": "numOfProducts",
-								"type": "uint256"
-							},
-							{
 								"internalType": "address",
 								"name": "buyer",
 								"type": "address"
@@ -211,28 +206,6 @@
 						"internalType": "uint256",
 						"name": "totalQty",
 						"type": "uint256"
-					},
-					{
-						"components": [
-							{
-								"internalType": "string",
-								"name": "asin",
-								"type": "string"
-							},
-							{
-								"internalType": "uint256",
-								"name": "price",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "quantity",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct Payment.Product[]",
-						"name": "products",
-						"type": "tuple[]"
 					}
 				],
 				"name": "makePayment",
@@ -376,11 +349,11 @@
 	},
 	"sources": {
 		"contracts/Payment.sol": {
-			"keccak256": "0x68e6c37ab94ca83bcd076357b221608750346ae9e90ddb9af6fb88141701b950",
+			"keccak256": "0xd5555d45bc0b804840d85a7091679b10c2fb07221793fa8307f58979e15ed36d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://980ac86029920a09e0848478666650aaf610698f6b0b3e6deff864819f1f7363",
-				"dweb:/ipfs/QmQe5z4kXWoWXhpz6dvn4ed1TkKjsKQztTkQaarV3zDibg"
+				"bzz-raw://4725f33396c9e537b681a62cd1a7e3d336e367deab5459ceec16abb15de10c47",
+				"dweb:/ipfs/QmNT647ymAkBbun9YHK9t1U8jJ3PrSBbH8DnQyzNiXJsXt"
 			]
 		},
 		"contracts/helpers/Address.sol": {
